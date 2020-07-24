@@ -5,7 +5,9 @@ import Pagination from "./common/pagination";
 import Filter from "./common/filter";
 import { paginate } from "../utils/paginate";
 import MovieTable from "./moviesTable";
+
 import _ from "lodash";
+
 class Movies extends Component {
   state = {
     movies: [],
@@ -22,6 +24,7 @@ class Movies extends Component {
   componentDidMount() {
     const genre = [{ _id: "", name: "All Genre" }, ...getGenres()];
     this.setState({ movies: getMovies(), genreList: genre });
+    console.log("in movies");
   }
 
   handleDelete = (id) => {

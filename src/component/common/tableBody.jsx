@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import _ from "lodash";
+
 class TableBody extends Component {
   renderCell(movie, coloumn) {
     if (coloumn.content) {
