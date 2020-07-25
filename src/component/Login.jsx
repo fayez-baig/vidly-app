@@ -77,7 +77,9 @@ class Login extends Component {
           />
 
           <div className="form-group">
-            <button className="btn btn-primary">Submit</button>
+            <button className="btn btn-primary" disabled={this.validate()}>
+              Submit
+            </button>
           </div>
         </form>
       </div>
