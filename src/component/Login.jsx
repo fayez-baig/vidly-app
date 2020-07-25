@@ -19,16 +19,16 @@ class Login extends Component {
   validate = () => {
     const { accounts } = this.state;
     const options = { abortEarly: false };
-    const result = joi.validate(accounts, this.schema, options);
-    console.log(result);
-    if (!result.error) return null;
+    const { error } = joi.validate(accounts, this.schema, options);
+    console.log(error);
+    if (!error) return null;
 
-    const error = {};
+    const errors = {};
 
-    for (let item of result.error.details) {
-      error[item.path[0]] = item.message;
+    for (let item of error.details) {
+      errors[item.path[0]] = item.message;
     }
-    return error;
+    return errors;
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -58,7 +58,7 @@ class Login extends Component {
     this.setState({ accounts, error });
   };
   render() {
-    const { accounts } = this.state;
+    const { accounts, error } = this.state;
     return (
       <div className="container">
         <h1>Login</h1>
@@ -68,14 +68,14 @@ class Login extends Component {
             name="username"
             value={accounts.username}
             onChange={this.handleChange}
-            error={this.state.error.username}
+            error={error.username}
           />
           <Input
             label="Password"
             name="password"
             value={accounts.password}
             onChange={this.handleChange}
-            error={this.state.error.password}
+            error={error.password}
           />
 
           <div className="form-group">
