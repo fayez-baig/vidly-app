@@ -38,12 +38,10 @@ class Login extends Component {
   };
 
   validateProperty = ({ name, value }) => {
-    if (name === "username") {
-      if (value === "") return "Username is invaid";
-    }
-    if (name === "password") {
-      if (value === "") return "password is invaid";
-    }
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
   };
 
   handleChange = (event) => {
