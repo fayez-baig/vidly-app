@@ -7,11 +7,21 @@ class Login extends Component {
       username: "",
       password: "",
     },
+    error: {},
   };
-
+  validate = () => {
+    const { accounts } = this.state;
+    const error = {};
+    if (accounts.username === "") error.username = "Username is Required";
+    if (accounts.password === "") error.password = "Password is Required";
+    console.log(error);
+    return Object.keys(error).length === 0 ? {} : error;
+  };
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.accounts);
+    const error = this.validate();
+    console.log(error);
+    this.setState({ error });
   };
 
   handleChange = (event) => {
@@ -30,12 +40,14 @@ class Login extends Component {
             name="username"
             value={accounts.username}
             onChange={this.handleChange}
+            error={this.state.error.username}
           />
           <Input
             label="Password"
             name="password"
             value={accounts.password}
             onChange={this.handleChange}
+            error={this.state.error.password}
           />
 
           <div className="form-group">
