@@ -1,15 +1,16 @@
 import React from "react";
-import Movies from "./component/Movies";
-import "bootstrap/dist/css/bootstrap.css";
-import "font-awesome/css/font-awesome.css";
-import Container from "react-bootstrap/Container";
-import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
+import Movies from "./component/Movies";
 import Rental from "./component/common/Rentals";
 import Customer from "./component/common/Customers";
 import NotFound from "./component/common/NotFound";
 import NavBar from "./component/common/NavBar";
 import MovieForm from "./component/common/Movie-form";
+import Login from "./component/Login";
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";
+
+import "./App.css";
 
 //vidly app
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/rentals" component={Rental}></Route>
           <Route path="/customers" component={Customer}></Route>
           <Route path="/notfound" component={NotFound}></Route>
+          <Route path="/login" component={Login}></Route>
           <Route path="/movies" component={Movies}></Route>
           <Redirect exact from="/" to="/movies"></Redirect>
           <Redirect to="/notfound"></Redirect>

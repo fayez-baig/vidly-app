@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
-  state = {};
   render() {
+    console.log("fix-nav bar-responsive-bug");
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand" to="/">
@@ -30,6 +30,9 @@ class NavBar extends Component {
             </NavLink>
             <NavLink className="nav-item nav-link" to="/rentals">
               Rentals
+            </NavLink>
+            <NavLink className="nav-item nav-link" to="/login">
+              Login
             </NavLink>
           </div>
         </div>
