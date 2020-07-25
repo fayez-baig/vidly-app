@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import joi from "joi-browser";
 import Input from "./input";
 
 class Login extends Component {
@@ -9,13 +10,25 @@ class Login extends Component {
     },
     error: {},
   };
+
+  schema = {
+    username: joi.string().required().label("Username"),
+    password: joi.string().required().label("Password"),
+  };
+
   validate = () => {
     const { accounts } = this.state;
+    const options = { abortEarly: false };
+    const result = joi.validate(accounts, this.schema, options);
+    console.log(result);
+    if (!result.error) return null;
+
     const error = {};
-    if (accounts.username === "") error.username = "Username is Required";
-    if (accounts.password === "") error.password = "Password is Required";
-    console.log(error);
-    return Object.keys(error).length === 0 ? {} : error;
+
+    for (let item of result.error.details) {
+      error[item.path[0]] = item.message;
+    }
+    return error;
   };
   handleSubmit = (event) => {
     event.preventDefault();
