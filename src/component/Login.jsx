@@ -24,10 +24,25 @@ class Login extends Component {
     this.setState({ error });
   };
 
+  validateProperty = ({ name, value }) => {
+    if (name === "username") {
+      if (value === "") return "Username is invaid";
+    }
+    if (name === "password") {
+      if (value === "") return "password is invaid";
+    }
+  };
+
   handleChange = (event) => {
+    const error = { ...this.state.error };
+    const errorMessage = this.validateProperty(event.currentTarget);
+
+    if (errorMessage) error[event.currentTarget.name] = errorMessage;
+    else delete error[event.currentTarget.name];
+
     const accounts = { ...this.state.accounts };
     accounts[event.currentTarget.name] = event.currentTarget.value;
-    this.setState({ accounts });
+    this.setState({ accounts, error });
   };
   render() {
     const { accounts } = this.state;
