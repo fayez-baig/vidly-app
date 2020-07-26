@@ -11,11 +11,9 @@ class Form extends Component {
     const { data } = this.state;
     const options = { abortEarly: false };
     const { error } = joi.validate(data, this.schema, options);
-    console.log(error);
     if (!error) return null;
-
+    console.log(error.details);
     const errors = {};
-
     for (let item of error.details) {
       errors[item.path[0]] = item.message;
     }
@@ -24,9 +22,7 @@ class Form extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const error = this.validate();
-    console.log(error);
     this.setState({ error: error || {} });
-
     this.doSubmit();
   };
 

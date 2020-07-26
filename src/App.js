@@ -7,9 +7,9 @@ import NotFound from "./component/common/NotFound";
 import NavBar from "./component/common/NavBar";
 import MovieForm from "./component/common/Movie-form";
 import Login from "./component/Login";
+import Register from "./component/common/Register";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-
 import "./App.css";
 
 //vidly app
@@ -25,6 +25,8 @@ function App() {
           <Route path="/customers" component={Customer}></Route>
           <Route path="/notfound" component={NotFound}></Route>
           <Route path="/login" component={Login}></Route>
+          <Route path="/register" component={Register}></Route>
+          <Route path="/movie/new" component={Register}></Route>
           <Route path="/movies" component={Movies}></Route>
           <Redirect exact from="/" to="/movies"></Redirect>
           <Redirect to="/notfound"></Redirect>
