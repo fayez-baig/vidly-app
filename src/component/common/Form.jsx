@@ -17,6 +17,7 @@ class Form extends Component {
     for (let item of error.details) {
       errors[item.path[0]] = item.message;
     }
+    console.log(errors);
     return errors;
   };
   handleSubmit = (event) => {
@@ -44,7 +45,7 @@ class Form extends Component {
     const data = { ...this.state.data };
 
     data[event.currentTarget.name] = event.currentTarget.value;
-
+    console.log(this.state.data);
     this.setState({ data, error });
   };
 

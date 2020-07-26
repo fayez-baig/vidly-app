@@ -17,6 +17,7 @@ class MovieForm extends Form {
   };
 
   schema = {
+    _id: joi.string(),
     title: joi.string().required().label("Title"),
     numberInStock: joi
       .number()
@@ -40,10 +41,10 @@ class MovieForm extends Form {
     this.setState({ data: this.mapToViewModel(movie) });
   }
 
-  mapToViewModal(movie) {
+  mapToViewModel(movie) {
     return {
       _id: movie._id,
-      title: movie.name,
+      title: movie.title,
       genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
       dailyRentalRate: movie.dailyRentalRate,

@@ -76,7 +76,6 @@ class Movies extends Component {
     return { totalCount: filtered.length, data: movies };
   };
   render() {
-    console.log(this.state.movies);
     const { length: count } = this.state.movies;
     const { currentPage, sortColoumn, pageSize } = this.state;
     if (count === 0) {
