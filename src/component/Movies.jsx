@@ -7,6 +7,7 @@ import { paginate } from "../utils/paginate";
 import MovieTable from "./moviesTable";
 
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -81,6 +82,7 @@ class Movies extends Component {
 
     const { totalCount, data: movies } = this.getPagedData();
 
+    console.log(this.state.movies);
     return (
       <React.Fragment>
         <div className="row">
@@ -92,6 +94,9 @@ class Movies extends Component {
             />
           </div>
           <div className="col-9">
+            <Link to="/movie-form/new/" className="btn btn-primary">
+              Add Movie
+            </Link>
             <p>The Total Record in database is: {totalCount}</p>
             <MovieTable
               movies={movies}

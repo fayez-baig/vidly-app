@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import joi from "joi-browser";
 import Input from "../input";
+import Select from "./select";
 
 class Form extends Component {
   state = {
@@ -12,7 +13,6 @@ class Form extends Component {
     const options = { abortEarly: false };
     const { error } = joi.validate(data, this.schema, options);
     if (!error) return null;
-    console.log(error.details);
     const errors = {};
     for (let item of error.details) {
       errors[item.path[0]] = item.message;
@@ -65,6 +65,10 @@ class Form extends Component {
         type={type}
       />
     );
+  };
+
+  renderSelect = (name, label, options) => {
+    return <Select name={name} label={label} options={options} />;
   };
 }
 

@@ -20,13 +20,12 @@ function App() {
       <NavBar />
       <main className="container mt-4">
         <Switch>
-          <Route path="/movie-form/:id" component={MovieForm}></Route>
+          <Route path="/movie-form/new/" component={MovieForm}></Route>
           <Route path="/rentals" component={Rental}></Route>
           <Route path="/customers" component={Customer}></Route>
           <Route path="/notfound" component={NotFound}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
-          <Route path="/movie/new" component={Register}></Route>
           <Route path="/movies" component={Movies}></Route>
           <Redirect exact from="/" to="/movies"></Redirect>
           <Redirect to="/notfound"></Redirect>
