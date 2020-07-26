@@ -20,7 +20,7 @@ function App() {
       <NavBar />
       <main className="container mt-4">
         <Switch>
-          <Route path="/movie-form/new/" component={MovieForm}></Route>
+          <Route path="/movie-form/:id" component={MovieForm}></Route>
           <Route path="/rentals" component={Rental}></Route>
           <Route path="/customers" component={Customer}></Route>
           <Route path="/notfound" component={NotFound}></Route>

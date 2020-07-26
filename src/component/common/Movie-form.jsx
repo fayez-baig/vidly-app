@@ -2,10 +2,16 @@ import React from "react";
 import joi from "joi-browser";
 import Form from "./Form";
 import { getGenres } from "./../../services/fakeGenreService";
+import { getMovie, saveMovie } from "./../../services/fakeMovieService";
 
 class MovieForm extends Form {
   state = {
-    data: {},
+    data: {
+      title: "",
+      genreId: "",
+      numberInStock: "",
+      dailyRentalRate: "",
+    },
     genres: [],
     error: {},
   };
@@ -19,10 +25,29 @@ class MovieForm extends Form {
       .required()
       .label("Number in Stock"),
     dailyRentalRate: joi.number().min(0).max(10).required().label("Rate"),
+    genreId: joi.required(),
   };
   componentDidMount() {
     const genres = getGenres();
     this.setState({ genres });
+
+    const movieId = this.props.match.params.id;
+    if (movieId === "new") return;
+
+    const movie = getMovie(movieId);
+    if (!movie) return this.props.history.replace("/not-found");
+
+    this.setState({ data: this.mapToViewModel(movie) });
+  }
+
+  mapToViewModal(movie) {
+    return {
+      _id: movie._id,
+      title: movie.name,
+      genreId: movie.genre._id,
+      numberInStock: movie.numberInStock,
+      dailyRentalRate: movie.dailyRentalRate,
+    };
   }
   // render() {
   //   const { match, history } = this.props;
@@ -39,6 +64,12 @@ class MovieForm extends Form {
   //   );
   // }
 
+  doSubmit = () => {
+    console.log(this.state.data);
+    saveMovie(this.state.data);
+    this.props.history.push("/movies");
+  };
+
   render() {
     const { genres } = this.state;
     return (
@@ -46,7 +77,7 @@ class MovieForm extends Form {
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
-          {this.renderSelect("genre", "Genre", genres)}
+          {this.renderSelect("genreId", "Genre", genres)}
           {this.renderInput("numberInStock", "Number in Stock", "number")}
           {this.renderInput("dailyRentalRate", "Rate", "number")}
           {this.renderButton("Add Movie")}

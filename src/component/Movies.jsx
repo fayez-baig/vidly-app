@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
+import { getMovies, deleteMovie } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import Pagination from "./common/pagination";
 import Filter from "./common/filter";
@@ -31,6 +31,8 @@ class Movies extends Component {
   handleDelete = (id) => {
     const movies = this.state.movies.filter((m) => m._id !== id);
     this.setState({ movies: movies });
+
+    deleteMovie(id);
   };
 
   handleLike(movie) {
@@ -74,6 +76,7 @@ class Movies extends Component {
     return { totalCount: filtered.length, data: movies };
   };
   render() {
+    console.log(this.state.movies);
     const { length: count } = this.state.movies;
     const { currentPage, sortColoumn, pageSize } = this.state;
     if (count === 0) {
@@ -82,7 +85,6 @@ class Movies extends Component {
 
     const { totalCount, data: movies } = this.getPagedData();
 
-    console.log(this.state.movies);
     return (
       <React.Fragment>
         <div className="row">

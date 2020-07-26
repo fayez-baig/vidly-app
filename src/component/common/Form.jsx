@@ -35,13 +35,16 @@ class Form extends Component {
 
   handleChange = (event) => {
     const error = { ...this.state.error };
+
     const errorMessage = this.validateProperty(event.currentTarget);
 
     if (errorMessage) error[event.currentTarget.name] = errorMessage;
     else delete error[event.currentTarget.name];
 
     const data = { ...this.state.data };
+
     data[event.currentTarget.name] = event.currentTarget.value;
+
     this.setState({ data, error });
   };
 
@@ -68,7 +71,17 @@ class Form extends Component {
   };
 
   renderSelect = (name, label, options) => {
-    return <Select name={name} label={label} options={options} />;
+    const { data, error } = this.state;
+    return (
+      <Select
+        name={name}
+        label={label}
+        value={data[name]}
+        onChange={this.handleChange}
+        error={error[name]}
+        options={options}
+      />
+    );
   };
 }
 
