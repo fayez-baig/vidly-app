@@ -8,6 +8,7 @@ import MovieTable from "./moviesTable";
 
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import Search from "./common/search";
 
 class Movies extends Component {
   state = {
@@ -15,6 +16,7 @@ class Movies extends Component {
     pageSize: 4,
     currentPage: 1,
     genreList: [],
+    searched: false,
     sortColoumn: {
       path: "title",
       order: "asc",
@@ -54,6 +56,12 @@ class Movies extends Component {
     this.setState({ sortColoumn });
   };
 
+  handleSearch = ({ currentTarget }) => {
+    const searched = currentTarget.value;
+
+    this.setState({ searched, selectedGenre: null, currentPage: 1 });
+  };
+
   getPagedData = () => {
     const {
       movies: allMovies,
@@ -61,16 +69,23 @@ class Movies extends Component {
       selectedGenre,
       sortColoumn,
       pageSize,
+      searched,
     } = this.state;
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? this.state.movies.filter(
-            (m) => m.genre.name === this.state.selectedGenre.name
-          )
-        : allMovies;
+    let filtered = allMovies;
+    if (searched) {
+      filtered = allMovies.filter((movie) =>
+        movie.title.toLowerCase().includes(searched)
+      );
+    } else if (selectedGenre && selectedGenre._id) {
+      filtered =
+        selectedGenre && selectedGenre._id
+          ? this.state.movies.filter(
+              (m) => m.genre.name === this.state.selectedGenre.name
+            )
+          : allMovies;
+    }
 
     const sorted = _.orderBy(filtered, [sortColoumn.path], [sortColoumn.order]);
-
     const movies = paginate(sorted, currentPage, pageSize);
 
     return { totalCount: filtered.length, data: movies };
@@ -99,6 +114,7 @@ class Movies extends Component {
               Add Movie
             </Link>
             <p>The Total Record in database is: {totalCount}</p>
+            <Search onChange={this.handleSearch} />
             <MovieTable
               movies={movies}
               sortColoumn={sortColoumn}
