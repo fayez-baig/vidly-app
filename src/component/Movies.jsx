@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { getMovies, deleteMovie } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
-import Pagination from "./common/pagination";
+import { getMovies, deleteMovie } from "../services/movieService";
+import { getGenres } from "../services//genreService";
+import { toast, ToastContainer } from "react-toastify";
 import Filter from "./common/filter";
-import { paginate } from "../utils/paginate";
+import Pagination from "./common/pagination";
 import MovieTable from "./moviesTable";
-
+import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 import Search from "./common/search";
+import "react-toastify/dist/ReactToastify.css";
 
 class Movies extends Component {
   state = {
@@ -24,17 +25,27 @@ class Movies extends Component {
     selectedGenre: false,
   };
 
-  componentDidMount() {
-    const genre = [{ _id: "", name: "All Genre" }, ...getGenres()];
-    this.setState({ movies: getMovies(), genreList: genre });
+  async componentDidMount() {
+    const result = await getMovies();
+
+    const { data } = await getGenres();
+    const genre = [{ _id: "", name: "All Genre" }, ...data];
+    this.setState({ movies: result.data, genreList: genre });
     console.log("in movies");
   }
 
-  handleDelete = (id) => {
-    const movies = this.state.movies.filter((m) => m._id !== id);
+  handleDelete = async (id) => {
+    const allMovies = this.state.movies;
+    const movies = allMovies.filter((m) => m._id !== id);
     this.setState({ movies: movies });
-
-    deleteMovie(id);
+    try {
+      await deleteMovie();
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        toast.error("Movie not found");
+        this.setState({ movies: allMovies });
+      }
+    }
   };
 
   handleLike(movie) {
@@ -101,6 +112,7 @@ class Movies extends Component {
 
     return (
       <React.Fragment>
+        <ToastContainer />
         <div className="row">
           <div className="col-3">
             <Filter
