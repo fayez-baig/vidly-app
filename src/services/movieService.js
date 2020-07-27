@@ -1,7 +1,8 @@
 import http from "./httpService";
 import config from "./config.json";
+
 const getMovies = () => {
-  return http.get(`${config.apiEndPoint}/movies/`);
+  return http.get(`${config.apiEndPoint}/movies`);
 };
 const getMovie = (id) => {
   return http.get(`${config.apiEndPoint}/movies/${id}`);
