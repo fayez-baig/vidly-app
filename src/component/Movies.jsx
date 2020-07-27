@@ -16,7 +16,7 @@ class Movies extends Component {
     pageSize: 4,
     currentPage: 1,
     genreList: [],
-    searched: false,
+    searched: "",
     sortColoumn: {
       path: "title",
       order: "asc",
@@ -92,7 +92,7 @@ class Movies extends Component {
   };
   render() {
     const { length: count } = this.state.movies;
-    const { currentPage, sortColoumn, pageSize } = this.state;
+    const { currentPage, sortColoumn, pageSize, searched } = this.state;
     if (count === 0) {
       return <p>NO DATA IS DATA BASE</p>;
     }
@@ -114,7 +114,7 @@ class Movies extends Component {
               Add Movie
             </Link>
             <p>The Total Record in database is: {totalCount}</p>
-            <Search onChange={this.handleSearch} />
+            <Search value={searched} onChange={this.handleSearch} />
             <MovieTable
               movies={movies}
               sortColoumn={sortColoumn}
