@@ -39,7 +39,7 @@ class Movies extends Component {
     const movies = allMovies.filter((m) => m._id !== id);
     this.setState({ movies: movies });
     try {
-      await deleteMovie();
+      await deleteMovie(id);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         toast.error("Movie not found");
