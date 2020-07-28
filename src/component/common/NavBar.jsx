@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
+    const { user } = this.props;
     console.log("fix-nav bar-responsive-bug");
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,12 +32,26 @@ class NavBar extends Component {
             <NavLink className="nav-item nav-link" to="/rentals">
               Rentals
             </NavLink>
-            <NavLink className="nav-item nav-link" to="/login">
-              Login
-            </NavLink>
-            <NavLink className="nav-item nav-link" to="/register">
-              Register
-            </NavLink>
+            {!user && (
+              <>
+                <NavLink className="nav-item nav-link" to="/login">
+                  Login
+                </NavLink>
+                <NavLink className="nav-item nav-link" to="/register">
+                  Register
+                </NavLink>
+              </>
+            )}
+            {user && (
+              <>
+                <NavLink className="nav-item nav-link" to="/profile">
+                  {user.name}
+                </NavLink>
+                <NavLink className="nav-item nav-link" to="/logout">
+                  Logout
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </nav>

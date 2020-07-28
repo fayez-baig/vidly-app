@@ -1,6 +1,9 @@
 import React from "react";
 import Form from "./Form";
 import joi from "joi-browser";
+import { ToastContainer, toast } from "react-toastify";
+import * as userService from "./../../services/userService";
+import "react-toastify/dist/ReactToastify.css";
 
 class Register extends Form {
   state = {
@@ -16,9 +19,23 @@ class Register extends Form {
     password: joi.string().min(5).required().label("Password"),
     name: joi.string().required().label("Name"),
   };
+
+  doSubmit = async () => {
+    try {
+      await userService.Register(this.state.data);
+
+      toast("Registered Successfully");
+      setTimeout(() => (window.location = "/"), 1000);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        toast.error("User already Registered");
+      }
+    }
+  };
   render() {
     return (
       <div className="container">
+        <ToastContainer />
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username", "email")}
