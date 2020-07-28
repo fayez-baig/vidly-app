@@ -1,8 +1,10 @@
 import React from "react";
 import Form from "./Form";
 import joi from "joi-browser";
+
 import { ToastContainer, toast } from "react-toastify";
 import * as userService from "./../../services/userService";
+import * as userAuth from "./../../services/userAuth";
 import "react-toastify/dist/ReactToastify.css";
 
 class Register extends Form {
@@ -22,8 +24,8 @@ class Register extends Form {
 
   doSubmit = async () => {
     try {
-      await userService.Register(this.state.data);
-
+      const { headers } = await userService.Register(this.state.data);
+      userAuth.loginWithJwt(headers["x-auth-token"]);
       toast("Registered Successfully");
       setTimeout(() => (window.location = "/"), 1000);
     } catch (error) {

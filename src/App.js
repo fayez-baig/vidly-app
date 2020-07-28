@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 import Movies from "./component/Movies";
 import Rental from "./component/common/Rentals";
 import Customer from "./component/common/Customers";
@@ -10,6 +9,7 @@ import MovieForm from "./component/common/Movie-form";
 import Login from "./component/Login";
 import Logout from "./component/logout";
 import Register from "./component/common/Register";
+import * as userAuth from "./services/userAuth";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "./App.css";
@@ -17,12 +17,8 @@ import "./App.css";
 class App extends Component {
   state = {};
   componentDidMount() {
-    try {
-      const jwt = localStorage.getItem("token");
-      const user = jwtDecode(jwt);
-      console.log(user);
-      this.setState({ user });
-    } catch (error) {}
+    const user = userAuth.getCurrentUser();
+    this.setState({ user });
   }
   render() {
     return (
