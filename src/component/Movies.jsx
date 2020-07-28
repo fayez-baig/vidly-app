@@ -31,7 +31,6 @@ class Movies extends Component {
     const { data } = await getGenres();
     const genre = [{ _id: "", name: "All Genre" }, ...data];
     this.setState({ movies: result.data, genreList: genre });
-    console.log("in movies");
   }
 
   handleDelete = async (id) => {
@@ -115,14 +114,14 @@ class Movies extends Component {
       <React.Fragment>
         <ToastContainer />
         <div className="row">
-          <div className="col-3">
+          <div className="col-md-3 col">
             <Filter
               values={this.state.genreList}
               onItemSelect={this.handleSelect.bind(this)}
               selectedGenre={this.state.selectedGenre}
             />
           </div>
-          <div className="col-9">
+          <div className="col-md-9 col">
             {user && (
               <Link to="/movie-form/new/" className="btn btn-primary">
                 Add Movie

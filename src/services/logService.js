@@ -1,7 +1,5 @@
 function init() {}
 
-function log(error) {
-  console.log(error);
-}
+function log(error) {}
 
 export { init, log };

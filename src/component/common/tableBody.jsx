@@ -27,20 +27,3 @@ class TableBody extends Component {
 }
 
 export default TableBody;
-{
-  /* <td>{movie.title}</td>
-            <td>{movie.genre.name}</td>
-            <td>{movie.numberInStock}</td>
-
-            <td>{movie.dailyRentalRate}</td>
-            <td>
-              <Heart liked={movie.liked} onClick={() => onLike(movie)} />
-            </td>
-            <td>
-              <button
-                onClick={() => onDelete(movie._id)}
-                className="btn btn-danger btn-sm"
-              >
-                DELETE
-              </button> */
-}
