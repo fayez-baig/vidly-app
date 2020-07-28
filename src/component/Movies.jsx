@@ -121,7 +121,7 @@ class Movies extends Component {
           <div className="col-md-9 col">
             {user && (
               <Link to="/movie-form/new/" className="btn btn-primary">
-                Save
+                Add Movie
               </Link>
             )}
 
