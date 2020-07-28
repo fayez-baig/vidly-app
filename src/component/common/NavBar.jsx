@@ -38,7 +38,7 @@ class NavBar extends Component {
             )}
             {user && (
               <>
-                <NavLink className="nav-item nav-link" to="/profile">
+                <NavLink className="nav-item nav-link" to="/movies">
                   {user.name}
                 </NavLink>
                 <NavLink className="nav-item nav-link" to="/logout">

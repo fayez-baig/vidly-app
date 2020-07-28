@@ -4,8 +4,6 @@ import { log } from "./logService";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-console.log(process.env.REACT_APP_API_URL);
-
 export function setJwt(jwt) {
   axios.defaults.headers.common["x-auth-token"] = jwt;
 }
