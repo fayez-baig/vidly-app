@@ -13,6 +13,8 @@ import "font-awesome/css/font-awesome.css";
 import "./App.css";
 import ProtectedRoute from "./component/common/ProtectedRoute";
 
+//Vidly app
+
 class App extends Component {
   state = {};
   componentDidMount() {
