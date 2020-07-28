@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import * as userService from "./../../services/userService";
 import * as userAuth from "./../../services/userAuth";
 import "react-toastify/dist/ReactToastify.css";
+import { Redirect } from "react-router-dom";
 
 class Register extends Form {
   state = {
@@ -35,6 +36,7 @@ class Register extends Form {
     }
   };
   render() {
+    if (userAuth.getCurrentUser()) return <Redirect to="/" />;
     return (
       <div className="container">
         <ToastContainer />
