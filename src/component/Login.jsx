@@ -24,7 +24,12 @@ class Login extends Form {
 
       await login(data.username, data.password);
       toast.success("Login  Successfully");
-      setTimeout(() => (window.location = "/"), 1000);
+
+      const { state } = this.props.location;
+      setTimeout(
+        () => (window.location = state ? state.from.pathname : "/"),
+        1000
+      );
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error("Invalid Username or Password");

@@ -13,6 +13,7 @@ import * as userAuth from "./services/userAuth";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "./App.css";
+import ProtectedRoute from "./component/common/ProtectedRoute";
 
 class App extends Component {
   state = {};
@@ -21,9 +22,10 @@ class App extends Component {
     this.setState({ user });
   }
   render() {
+    const { user } = this.state;
     return (
       <React.Fragment>
-        <NavBar user={this.state.user} />
+        <NavBar user={user} />
         <main className="container mt-4">
           <Switch>
             <Route path="/rentals" component={Rental}></Route>
@@ -32,8 +34,12 @@ class App extends Component {
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/logout" component={Logout}></Route>
-            <Route path="/movie-form/:id" component={MovieForm}></Route>
-            <Route path="/movies" component={Movies}></Route>
+            <ProtectedRoute path="/movie-form/:id" component={MovieForm} />
+            <Route
+              exact
+              path="/movies"
+              render={(props) => <Movies {...props} user={user} />}
+            ></Route>
             <Redirect exact from="/" to="/movies"></Redirect>
             <Redirect to="/notfound"></Redirect>
           </Switch>

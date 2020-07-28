@@ -104,6 +104,7 @@ class Movies extends Component {
   render() {
     const { length: count } = this.state.movies;
     const { currentPage, sortColoumn, pageSize, searched } = this.state;
+    const { user } = this.props;
     if (count === 0) {
       return <p>NO DATA IS DATA BASE</p>;
     }
@@ -122,9 +123,12 @@ class Movies extends Component {
             />
           </div>
           <div className="col-9">
-            <Link to="/movie-form/new/" className="btn btn-primary">
-              Add Movie
-            </Link>
+            {user && (
+              <Link to="/movie-form/new/" className="btn btn-primary">
+                Add Movie
+              </Link>
+            )}
+
             <p>The Total Record in database is: {totalCount}</p>
             <Search value={searched} onChange={this.handleSearch} />
             <MovieTable
