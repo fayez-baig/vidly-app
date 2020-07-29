@@ -4,7 +4,7 @@
 
 > Technology used: `React.js` , `JavaScript` , `BootStrap 4`
 
-> Live application can be accessed from : [Live-Demo](https://vidly-16.herokuapp.com/)
+> Live application can be accessed from : [Live-Demo](https://vidly-16.herokuapp.com/?target=_blank)
 
 ---
 
