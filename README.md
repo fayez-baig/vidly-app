@@ -1,68 +1,89 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Vidly App
 
-## Available Scripts
+> Designed and implemented a production ready application for maintaining contact information
 
-In the project directory, you can run:
+> Technology used: `React.js` , `JavaScript` , `BootStrap 4`
 
-### `npm start`
+> Live application can be accessed from : [Live-Demo](https://vidly-16.herokuapp.com/)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Table of Contents
 
-### `npm test`
+- [Installation](#installation)
+- [Features](#features)
+- [Screencasts](#screencasts)
+- [BrowserList](#browserlist)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> To proceed with smooth installation you should have Node 8+ version installed in your system
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+> Please navigate to `Vidly-App` folder and run below command to install `node_modules` in order to run this app locally.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```shell
+$ npm install
+```
 
-### `npm run eject`
+> Once node dependencies are installed then please open `command prompt` and run `nom start` for a development server.
+> Navigate to `http://localhost:3000/`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> The app will automatically reload if you change any of the source files.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Alternatively, Please have a look on [Live-Demo](https://vidly-16.herokuapp.com/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Features
 
-## Learn More
+> Expected functionality:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- User Registration and Login
+- List of movies
+- Add Update Delete Movie
+- Search Movie
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Screencasts
 
-### Code Splitting
+> Index Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![Index](home.gif)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+> Index page Responsive
 
-### Making a Progressive Web App
+![Index-Responsive](responsive.gif)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+---
 
-### Advanced Configuration
+> Login Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+![Login](login.gif)
 
-### Deployment
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+> Register Page
 
-### `npm run build` fails to minify
+![Register](Register.gif)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+
+> Movie Form
+
+![add update delete Page](add-update-delete.gif)
+
+---
+
+## BrowserList
+
+> Best user experience can be enjoyed on:
+
+- Google Chrome
+- Mozilla Firefox
+- Safari
+- Microsoft Edge
+
+---
