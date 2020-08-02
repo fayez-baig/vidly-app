@@ -36,34 +36,34 @@ Features
 GIFs
 
 👉 App Overview
-![Index](/assests/home.gif)
+![Index](/src/assests/home.gif)
 
 ---
 
 👉 Index page Responsive
 
-![Index-Responsive](/assests/responsive.gif)
+![Index-Responsive](/src/assests/responsive.gif)
 
 ---
 
 👉Login Page
 
-![Login](/assests/login.gif)
+![Login](/src/assests/login.gif)
 
 ---
 
 👉 Register Page
 
-![Register](/assests/Register.gif)
+![Register](/src/assests/Register.gif)
 
 ---
 
 👉 Movie Form
 
-![add update delete Page](/assests/add-update-delete.gif)
+![add update delete Page](/src/assests/add-update-delete.gif)
 
 ---
 
 👉 Error Page
 
-![error Page](/assests/error-page.gif)
+![error Page](/src/assests/error-page.gif)
